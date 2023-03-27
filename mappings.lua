@@ -15,6 +15,8 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
+    ["<S-h>"] = { "<cmd>bprev<cr>", desc = "Goto previous buffer" },
+    ["<S-l>"] = { "<cmd>bnext<cr>", desc = "Goto next buffer" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
@@ -36,6 +38,6 @@ return {
     ["K"] = { ":m '<-2<CR>gv=gv" },
   },
   x = {
-    ["p"] = { "\"_dP" },
-  }
+    ["p"] = { '"_dP' },
+  },
 }
