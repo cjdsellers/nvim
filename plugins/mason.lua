@@ -22,9 +22,8 @@ return {
       ensure_installed = {
         "stylua",
         "black",
-        "isort",
-        "rustfmt",
         "mypy",
+        "rustfmt",
         "ruff",
         "shellcheck",
       },
