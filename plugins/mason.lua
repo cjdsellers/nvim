@@ -18,22 +18,28 @@ return {
   {
     "jay-babu/mason-null-ls.nvim",
     -- overrides `require("mason-null-ls").setup(...)`
-    opts = {
-      ensure_installed = {
-        "stylua",
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      if not opts.ensure_installed then opts.ensure_installed = {} end
+      require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "black",
         "mypy",
         "rustfmt",
         "ruff",
+        "stylua",
         "shellcheck",
-      },
-    },
+      })
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
     -- overrides `require("mason-nvim-dap").setup(...)`
-    opts = {
-      -- ensure_installed = { "python" },
-    },
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      if not opts.ensure_installed then opts.ensure_installed = {} end
+      require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
+        -- "python",
+      })
+    end,
   },
 }
