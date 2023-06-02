@@ -11,6 +11,8 @@ return {
         "marksman",
         "pyright",
         "rust_analyzer",
+        "typescript-language-server",
+        "yaml-language-server",
       },
     },
   },
