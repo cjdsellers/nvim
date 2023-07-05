@@ -28,7 +28,6 @@ return {
         "black",
         "clang-format",
         "mypy",
-        "rustfmt",
         "ruff",
         "stylua",
         "shellcheck",
