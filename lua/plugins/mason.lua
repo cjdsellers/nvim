@@ -17,7 +17,6 @@ return {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "ruff_lsp",
         "tsserver",
         "yamlls",
         -- add more arguments for adding more language servers
