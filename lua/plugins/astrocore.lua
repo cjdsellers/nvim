@@ -33,7 +33,7 @@ return {
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
         cmdheight = 1, -- sets vim.opt.cmdheight
-        colorcolumn = "80,100,120",
+        colorcolumn = "100",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
