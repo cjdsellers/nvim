@@ -83,6 +83,7 @@ return {
         ["N"] = { "Nzzzv" },
         -- Telescope
         ["<Leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume last search" },
+        ["gr"] = { "<cmd>Telescope lsp_references<cr>", desc = "Goto LSP references" },
       },
       t = {
         -- setting a mapping to false will disable it
