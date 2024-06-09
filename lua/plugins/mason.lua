@@ -12,7 +12,6 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "marksman",
-        "clangd",
         "jsonls",
         "lua_ls",
         "pyright",
@@ -32,9 +31,7 @@ return {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
 
         "black",
-        "clang-format",
         "mypy",
-        "ruff",
         "stylua",
         "shellcheck",
         -- add more arguments for adding more null-ls sources
