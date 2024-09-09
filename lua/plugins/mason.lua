@@ -16,7 +16,6 @@ return {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "tsserver",
         "yamlls",
         -- add more arguments for adding more language servers
       })
@@ -31,9 +30,10 @@ return {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
 
         "black",
-        "mypy",
+        -- "mypy",
         "stylua",
         "shellcheck",
+        "ts-standard",
         -- add more arguments for adding more null-ls sources
       })
     end,
