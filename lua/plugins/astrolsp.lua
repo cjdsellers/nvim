@@ -45,8 +45,24 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- pyright = { capabilities = { disableOrganizeImports = true } },
-      -- ruff_lsp = { capabilities = { hoverProvider = false } },
+      pyright = { capabilities = { disableOrganizeImports = true } },
+      ruff = {
+        on_attach = function(client, bufnr)
+          if client.server_capabilities.codeActionProvider then
+            -- Trigger Ruff auto-fix on save
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = vim.api.nvim_create_augroup("RuffAutoFix", { clear = true }),
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.code_action {
+                  context = { only = { "source.fixAll" } },
+                  apply = true,
+                }
+              end,
+            })
+          end
+        end,
+      },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached
