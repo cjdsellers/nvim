@@ -84,6 +84,22 @@ return {
         -- Telescope
         ["<Leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume last search" },
         ["gr"] = { "<cmd>Telescope lsp_references<cr>", desc = "Goto LSP references" },
+
+        -- LSP Diagnostic navigation with centered view
+        ["<Leader>n"] = {
+          function()
+            vim.diagnostic.goto_next()
+            vim.cmd "normal! zz"
+          end,
+          desc = "Next diagnostic",
+        },
+        ["<Leader>N"] = {
+          function()
+            vim.diagnostic.goto_prev()
+            vim.cmd "normal! zz"
+          end,
+          desc = "Previous diagnostic",
+        },
       },
       t = {
         -- setting a mapping to false will disable it
