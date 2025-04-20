@@ -44,6 +44,40 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            restartServerOnConfigChange = true,
+            linkedProjects = { "Cargo.toml" },
+            cargo = {
+              features = "all",
+              extraEnv = {
+                VIRTUAL_ENV = "/home/chris/Documents/Projects/nautechsystems/nautilus_trader/.venv",
+                CC = "clang",
+                CXX = "clang++",
+              },
+            },
+            check = {
+              workspace = false,
+              command = "check",
+              features = "all",
+              extraEnv = {
+                VIRTUAL_ENV = "/home/chris/Documents/Projects/nautechsystems/nautilus_trader/.venv",
+                CC = "clang",
+                CXX = "clang++",
+              },
+            },
+            runnables = {
+              extraEnv = {
+                VIRTUAL_ENV = "/home/chris/Documents/Projects/nautechsystems/nautilus_trader/.venv",
+                CC = "clang",
+                CXX = "clang++",
+              },
+            },
+            testExplorer = true,
+          },
+        },
+      },
       pyright = { capabilities = { disableOrganizeImports = true } },
       ruff = {
         on_attach = function(client, bufnr)
