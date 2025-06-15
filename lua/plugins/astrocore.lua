@@ -85,6 +85,9 @@ return {
         ["<Leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume last search" },
         ["gr"] = { "<cmd>Telescope lsp_references<cr>", desc = "Goto LSP references" },
 
+        -- Git
+        ["<Leader>gg"] = { "<cmd>LazyGit<cr>", desc = "LazyGit" },
+
         -- LSP Diagnostic navigation with centered view
         ["<Leader>n"] = {
           function()

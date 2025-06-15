@@ -16,21 +16,38 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
+  -- LazyGit integration
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = "LazyGit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
   -- == Examples of Overriding Plugins ==
 
-  -- customize alpha options
+  -- customize dashboard options (snacks.nvim replaces alpha-nvim in v5)
   {
-    "goolord/alpha-nvim",
+    "folke/snacks.nvim",
     opts = function(_, opts)
       -- customize the dashboard header
-      opts.section.header.val = {
-        "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
-        "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
-        "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
-        "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
-        "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
-        "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
-      }
+      if opts.dashboard then
+        opts.dashboard.sections = opts.dashboard.sections or {}
+        for _, section in ipairs(opts.dashboard.sections) do
+          if section.section == "header" then
+            section.text = {
+              "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
+              "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
+              "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
+              "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+              "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
+              "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
+            }
+            break
+          end
+        end
+      end
       return opts
     end,
   },
@@ -76,6 +93,40 @@ return {
         -- disable for .vim files, but it work for another filetypes
         Rule("a", "a", "-vim")
       )
+    end,
+  },
+
+  -- Mason configurations (migrated from mason.lua)
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "jsonls",
+        "lua_ls",
+        "marksman",
+        "pyright",
+        "ruff",
+        "rust_analyzer",
+        "yamlls",
+      })
+    end,
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "stylua",
+        "shellcheck",
+      })
+    end,
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "codelldb",
+        "python",
+      })
     end,
   },
 }
