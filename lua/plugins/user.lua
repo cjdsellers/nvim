@@ -6,8 +6,6 @@
 ---@type LazySpec
 return {
 
-  -- == Examples of Adding Plugins ==
-
   "arcticicestudio/nord-vim",
   "andweeb/presence.nvim",
   {
@@ -16,13 +14,44 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
-  -- LazyGit integration
+  -- LazyGit
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+  },
+
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        cond = function() return vim.fn.executable "make" == 1 end,
+      },
+    },
+    config = function()
+      require("telescope").setup {
+        defaults = {
+          cache_picker = {
+            num_pickers = 10,
+            limit_entries = 1000,
+          },
+          layout_config = {
+            horizontal = {
+              preview_width = 0.65,
+              width = 0.95,
+              height = 0.95,
+            },
+          },
+        },
+      }
+      pcall(require("telescope").load_extension, "fzf")
+    end,
   },
 
   -- == Examples of Overriding Plugins ==
