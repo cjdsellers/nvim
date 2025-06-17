@@ -1,4 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- Config file activated for v5
 
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
@@ -81,9 +81,9 @@ return {
         -- Search terms
         ["n"] = { "nzzzv" },
         ["N"] = { "Nzzzv" },
-        -- Telescope
-        ["<Leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume last search" },
-        ["gr"] = { "<cmd>Telescope lsp_references<cr>", desc = "Goto LSP references" },
+        -- Telescope/Snacks picker
+        ["<Leader>fr"] = { function() require("snacks").picker.resume() end, desc = "Resume last search" },
+        ["gr"] = { function() require("snacks").picker.lsp_references() end, desc = "Goto LSP references" },
 
         -- Git
         ["<Leader>gg"] = { "<cmd>LazyGit<cr>", desc = "LazyGit" },

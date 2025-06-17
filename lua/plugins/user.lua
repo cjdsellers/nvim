@@ -1,4 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- Config file activated for v5
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
@@ -23,34 +23,19 @@ return {
     },
   },
 
-  -- Telescope
+  -- Snacks picker configuration (replaces Telescope in v5)
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        cond = function() return vim.fn.executable "make" == 1 end,
-      },
-    },
-    config = function()
-      require("telescope").setup {
-        defaults = {
-          cache_picker = {
-            num_pickers = 10,
-            limit_entries = 1000,
-          },
-          layout_config = {
-            horizontal = {
-              preview_width = 0.65,
-              width = 0.95,
-              height = 0.95,
-            },
-          },
-        },
-      }
-      pcall(require("telescope").load_extension, "fzf")
+    "folke/snacks.nvim",
+    opts = function(_, opts)
+      if opts.picker then
+        opts.picker.sources = opts.picker.sources or {}
+        -- Configure picker history/cache
+        opts.picker.recent = {
+          enabled = true,
+          max_items = 10,
+        }
+      end
+      return opts
     end,
   },
 
@@ -125,37 +110,25 @@ return {
     end,
   },
 
-  -- Mason configurations (migrated from mason.lua)
+  -- Mason tool installer configuration for v5
   {
-    "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "jsonls",
-        "lua_ls",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "stylua",
+        "json-lsp",
         "marksman",
         "pyright",
         "ruff",
-        "rust_analyzer",
-        "yamlls",
-      })
-    end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "stylua",
+        "rust-analyzer",
+        "yaml-language-server",
         "shellcheck",
-      })
-    end,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "codelldb",
-        "python",
-      })
-    end,
+        "debugpy",
+      },
+      auto_update = true,
+      run_on_start = true,
+    },
   },
 }
