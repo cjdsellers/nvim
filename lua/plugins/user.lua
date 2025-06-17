@@ -26,17 +26,28 @@ return {
   -- Snacks picker configuration (replaces Telescope in v5)
   {
     "folke/snacks.nvim",
-    opts = function(_, opts)
-      if opts.picker then
-        opts.picker.sources = opts.picker.sources or {}
-        -- Configure picker history/cache
-        opts.picker.recent = {
-          enabled = true,
-          max_items = 10,
-        }
-      end
-      return opts
-    end,
+    opts = {
+      picker = {
+        enabled = true,
+        layouts = {
+          custom = {
+            layout = {
+              box = "horizontal",
+              width = 0.95,
+              height = 0.95,
+              {
+                box = "vertical",
+                width = 0.3,
+                { win = "input", height = 1, border = "rounded" },
+                { win = "list", border = "rounded" },
+              },
+              { win = "preview", width = 0.7, border = "rounded" },
+            },
+          },
+        },
+        layout = "custom",
+      },
+    },
   },
 
   -- == Examples of Overriding Plugins ==
