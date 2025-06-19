@@ -37,11 +37,11 @@ return {
               height = 0.95,
               {
                 box = "vertical",
-                width = 0.3,
+                width = 0.35,
                 { win = "input", height = 1, border = "rounded" },
                 { win = "list", border = "rounded" },
               },
-              { win = "preview", width = 0.7, border = "rounded" },
+              { win = "preview", width = 0.65, border = "rounded" },
             },
           },
         },
