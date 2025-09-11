@@ -131,7 +131,7 @@ return {
         "json-lsp",
         "marksman",
         "pyright",
-        "ruff",
+        { "ruff", version = "0.12.12" },
         "rust-analyzer",
         "yaml-language-server",
         "shellcheck",
