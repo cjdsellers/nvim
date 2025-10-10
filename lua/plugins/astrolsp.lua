@@ -85,13 +85,13 @@ return {
           client.server_capabilities.documentFormattingProvider = false
 
           if client.server_capabilities.codeActionProvider then
-            -- Trigger Ruff auto-fix on save
+            -- Trigger Ruff organize imports on save (does not remove unused imports)
             vim.api.nvim_create_autocmd("BufWritePre", {
               group = vim.api.nvim_create_augroup("RuffAutoFix", { clear = true }),
               buffer = bufnr,
               callback = function()
                 vim.lsp.buf.code_action {
-                  context = { only = { "source.fixAll" } },
+                  context = { only = { "source.organizeImports.ruff" } },
                   apply = true,
                 }
               end,

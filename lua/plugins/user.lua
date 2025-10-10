@@ -132,9 +132,13 @@ return {
         "marksman",
         "pyright",
         { "ruff", version = "0.12.12" },
+        "black", -- Remove when standardized on ruff formatting
         "rust-analyzer",
+        "taplo",
         "yaml-language-server",
+        "yamllint",
         "shellcheck",
+        "shfmt",
         "codelldb",
         "debugpy",
       },
