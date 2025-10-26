@@ -81,9 +81,6 @@ return {
       pyright = { capabilities = { disableOrganizeImports = true } },
       ruff = {
         on_attach = function(client, bufnr)
-          -- Disable formatting from ruff so it doesn't interfere with Black's formatting
-          client.server_capabilities.documentFormattingProvider = false
-
           if client.server_capabilities.codeActionProvider then
             -- Trigger Ruff organize imports on save (does not remove unused imports)
             vim.api.nvim_create_autocmd("BufWritePre", {
