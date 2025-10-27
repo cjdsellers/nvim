@@ -79,23 +79,7 @@ return {
         },
       },
       pyright = { capabilities = { disableOrganizeImports = true } },
-      ruff = {
-        on_attach = function(client, bufnr)
-          if client.server_capabilities.codeActionProvider then
-            -- Trigger Ruff organize imports on save (does not remove unused imports)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = vim.api.nvim_create_augroup("RuffAutoFix", { clear = true }),
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.code_action {
-                  context = { only = { "source.organizeImports.ruff" } },
-                  apply = true,
-                }
-              end,
-            })
-          end
-        end,
-      },
+      ruff = {},
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached
