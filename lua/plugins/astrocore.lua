@@ -67,9 +67,6 @@ return {
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
-        ["<Leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
-        ["<Leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
-        ["<Leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
         -- tables with the `name` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         ["<S-h>"] = { "<cmd>bprev<cr>", desc = "Goto previous buffer" },

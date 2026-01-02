@@ -52,7 +52,7 @@ return {
             cargo = {
               features = "all",
               extraEnv = {
-                VIRTUAL_ENV = "/home/chris/Documents/Projects/nautechsystems/nautilus_trader/.venv",
+                VIRTUAL_ENV = os.getenv("VIRTUAL_ENV"),
                 CC = "clang",
                 CXX = "clang++",
               },
@@ -62,14 +62,14 @@ return {
               command = "check",
               features = "all",
               extraEnv = {
-                VIRTUAL_ENV = "/home/chris/Documents/Projects/nautechsystems/nautilus_trader/.venv",
+                VIRTUAL_ENV = os.getenv("VIRTUAL_ENV"),
                 CC = "clang",
                 CXX = "clang++",
               },
             },
             runnables = {
               extraEnv = {
-                VIRTUAL_ENV = "/home/chris/Documents/Projects/nautechsystems/nautilus_trader/.venv",
+                VIRTUAL_ENV = os.getenv("VIRTUAL_ENV"),
                 CC = "clang",
                 CXX = "clang++",
               },
