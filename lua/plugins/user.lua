@@ -130,7 +130,6 @@ return {
         "stylua",
         "json-lsp",
         "marksman",
-        "pyright",
         "ruff",
         "rust-analyzer",
         "taplo",
