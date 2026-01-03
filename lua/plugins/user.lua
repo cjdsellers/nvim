@@ -133,6 +133,7 @@ return {
         "ruff",
         "rust-analyzer",
         "taplo",
+        "ty",
         "yaml-language-server",
         "yamllint",
         "shellcheck",
