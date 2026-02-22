@@ -36,8 +36,6 @@ return {
         colorcolumn = "100",
       },
       g = { -- vim.g.<key>
-        -- configure global vim variables (vim.g)
-        autopairs_enabled = true, -- enable autopairs at start
       },
     },
     -- Mappings can be configured through AstroCore as well.
@@ -67,11 +65,6 @@ return {
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
-        -- tables with the `name` key will be registered with which-key if it's installed
-        -- this is useful for naming menus
-        ["<S-h>"] = { "<cmd>bprev<cr>", desc = "Goto previous buffer" },
-        ["<S-l>"] = { "<cmd>bnext<cr>", desc = "Goto next buffer" },
-
         ["<C-u>"] = { "<C-u>zz" },
         ["<C-d>"] = { "<C-d>zz" },
         ["<C-Q>"] = { "<nop>" },
@@ -88,14 +81,14 @@ return {
         -- LSP Diagnostic navigation with centered view
         ["<Leader>n"] = {
           function()
-            vim.diagnostic.goto_next()
+            vim.diagnostic.jump { count = 1 }
             vim.cmd "normal! zz"
           end,
           desc = "Next diagnostic",
         },
         ["<Leader>N"] = {
           function()
-            vim.diagnostic.goto_prev()
+            vim.diagnostic.jump { count = -1 }
             vim.cmd "normal! zz"
           end,
           desc = "Previous diagnostic",
