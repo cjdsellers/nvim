@@ -47,7 +47,6 @@ return {
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
-            restartServerOnConfigChange = true,
             linkedProjects = { "Cargo.toml" },
             cargo = {
               features = "all",
@@ -67,14 +66,6 @@ return {
                 CXX = "clang++",
               },
             },
-            runnables = {
-              extraEnv = {
-                VIRTUAL_ENV = os.getenv("VIRTUAL_ENV"),
-                CC = "clang",
-                CXX = "clang++",
-              },
-            },
-            testExplorer = true,
           },
         },
       },
@@ -82,23 +73,7 @@ return {
       ruff = {},
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
-    -- customize how language servers are attached
-    handlers = {
-      ty = function(_, opts)
-        local configs = require("lspconfig.configs")
-        if not configs.ty then
-          configs.ty = {
-            default_config = {
-              cmd = { "ty", "server" },
-              filetypes = { "python" },
-              root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "ty.toml", ".git"),
-              single_file_support = true,
-            },
-          }
-        end
-        require("lspconfig").ty.setup(opts)
-      end,
-    },
+    handlers = {},
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)
@@ -144,8 +119,10 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     on_attach = function(client, bufnr)
-      -- this would disable semanticTokensProvider for all clients
-      -- client.server_capabilities.semanticTokensProvider = nil
+      -- Disable hover from ruff in favor of ty
+      if client.name == "ruff" then
+        client.server_capabilities.hoverProvider = false
+      end
     end,
   },
 }
