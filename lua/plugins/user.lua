@@ -131,7 +131,6 @@ return {
         "ty",
         "yaml-language-server",
         "yamllint",
-        "prettier",
         "shellcheck",
         "shfmt",
         "codelldb",

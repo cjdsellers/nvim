@@ -13,7 +13,6 @@ return {
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
-      null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.shfmt.with {
         extra_args = { "-i", "2", "-ci", "-sr", "-ln", "bash" },
       },
