@@ -73,7 +73,23 @@ return {
       ruff = {},
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
-    handlers = {},
+    -- Custom handler needed until nvim-lspconfig is updated past 2025-05-14
+    handlers = {
+      ty = function(_, opts)
+        local configs = require("lspconfig.configs")
+        if not configs.ty then
+          configs.ty = {
+            default_config = {
+              cmd = { "ty", "server" },
+              filetypes = { "python" },
+              root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "ty.toml", ".git"),
+              single_file_support = true,
+            },
+          }
+        end
+        require("lspconfig").ty.setup(opts)
+      end,
+    },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)
